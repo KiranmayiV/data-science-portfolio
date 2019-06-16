@@ -3,3 +3,9 @@ This Repository contains data science and complex systems completed by me either
 
 (edit)The R portfolio is located here.
 (edit)Note: Data used in the projects (accessed under data directory) is for demonstration purposes only.
+
+#Projects
+1. Spread of Salmonellosis
+<del>visulaisation<\del>
+2. Gentrification in Sydney
+  <del>visulaisation<\del> <del>regression<\del>
