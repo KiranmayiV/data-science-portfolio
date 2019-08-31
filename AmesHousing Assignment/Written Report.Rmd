@@ -1,0 +1,197 @@
+---
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(collapse=TRUE, comment="##", fig.retina=2, fig.path = "AmesHousing_figs/Ames-Housing-")
+```
+
+```{r load data, message=FALSE, warning=FALSE}
+data_url='/Volumes/harddisk/kiran usb_backup/Statistics 5002/AmesHousing_num.csv'
+AmesHousing_num_csv=read.csv(data_url, header=TRUE)
+remove(data_url)
+data <- AmesHousing_num_csv
+require(dplyr)
+library(GGally)
+```
+
+
+```{r Q1, message=FALSE, warning=FALSE}
+#a) probability of house having basement
+houses=nrow(AmesHousing_num_csv)
+houses_nb=sum(is.na(AmesHousing_num_csv['Bsmt.Qual']))
+1-houses_nb/houses
+
+#b) probability of house having a pool
+houses_np=sum(is.na(AmesHousing_num_csv['Pool.QC']))
+1-houses_np/houses
+
+#c) probability of house having both pool and basement
+poolBase=sum(is.na(AmesHousing_num_csv['Bsmt.Qual'])==FALSE & is.na(AmesHousing_num_csv['Pool.QC'])==FALSE)
+poolBase/houses
+```
+
+###### Question 2: Exploring linear fit models
+Considering these 4 models, I will explore which of these models captures maximum variation in the y variable.
+$Yij = \beta_0+\beta_1x_{1i}+\epsilon_{ij}$(1)  
+
+
+$log(Yij) = \beta_0 + \beta_1x_{1i} + \epsilon_{ij}$(2)
+
+
+$Yij = \beta_0 + \beta_1log(x_{1i}) + \epsilon_{ij}$(3)
+
+
+$log(Yij) = \beta_0 + \beta_1log(x_{1i}) + \epsilon_{ij}$(4)
+
+
+Scatter plots: 
+```{r Question 2, message=FALSE, warning=FALSE}
+plot(AmesHousing_num_csv$Lot.Area, AmesHousing_num_csv$SalePrice, xlab = "Lot Area", ylab = "Sales Price", main = "model 1" )
+
+plot(AmesHousing_num_csv$Lot.Area, log(AmesHousing_num_csv$SalePrice),xlab = "Lot Area", ylab = "log(Sales Price)", main = "model 2" )
+
+
+plot(log(AmesHousing_num_csv$Lot.Area), (AmesHousing_num_csv$SalePrice),xlab = "log(Lot Area)", ylab = "Sales Price", main = "model 3")
+
+
+plot(log(AmesHousing_num_csv$Lot.Area),log(AmesHousing_num_csv$SalePrice), xlab = "log(Lot Area)", ylab = "log(Sale Price)", main = "model 4")
+```
+Based on just visual inspection, log(Sale Price) vs log(Lot area) shows visible linear relationship. 
+
+We now plot boxplots to check for outliers.
+```{r boxplot, message=FALSE, warning=FALSE}
+par(mfrow=c(2, 2))  # divide graph area in 2 columns
+boxplot(AmesHousing_num_csv$SalePrice , main=" Sale Price")  
+
+boxplot(AmesHousing_num_csv$Lot.Area, main="Lot Area") 
+
+boxplot(log(AmesHousing_num_csv$SalePrice) , main=" log(Sale Price)")  
+
+boxplot(log(AmesHousing_num_csv$Lot.Area), main="log(Lot Area)") 
+
+```
+Since the Sale prince and Lot Area both have several outliers, the linear regression model would not be a good model for making predictions.
+
+Examining density plots gives an idea into normality of the variables.
+```{r density, message=FALSE, warning=FALSE}
+par(mfrow=c(2, 2)) 
+hist(AmesHousing_num_csv$SalePrice, main = "Dist of Sale Price", xlab = "Sale Price")
+hist(AmesHousing_num_csv$Lot.Area, main = "Dist of Lot Area", xlab = "Lot Area")
+
+hist(log(AmesHousing_num_csv$SalePrice), main = "Dist of Sale Price", xlab = "log(Sale Price)")
+
+```
+Investigating now correlation coefficients.
+```{r pearsons, message=FALSE, warning=FALSE}
+cor(data$Lot.Area,data$SalePrice)
+cor(data$Lot.Area,log(data$SalePrice))
+cor(log(data$Lot.Area),data$SalePrice)
+cor(log(data$Lot.Area),log(data$SalePrice))
+
+```
+As confirmed by correlation coefficients, log(sale price) and log(lot area) show maximum correlation and therefore linear dependence. The histograms also show relatively normal distributions for log(sale price) and log(lot area). This gives us some idea into which would give us a good fit.
+
+Performing Simple Linear Regression Analysis and examining for best fit. 
+```{r simple linear regression, message=FALSE, warning=FALSE}
+model1 = lm(data$SalePrice ~ 1 + data$Lot.Area)
+model2 = lm(log(data$SalePrice) ~ 1 + data$Lot.Area)
+model3 = lm(data$SalePrice ~ 1 + log(data$Lot.Area))
+model4 = lm(log(data$SalePrice) ~ 1 + log(data$Lot.Area))
+summary(model1)
+summary(model2)
+summary(model3)
+summary(model4)
+```
+
+
+Performing Model Diagnostics:
+(a) Residuals
+```{r model diagnostics, message=FALSE, warning=FALSE}
+plot(data$Lot.Area ,model1$residuals, xlab= "Lot Area", ylab = "residuals, ", main = "Residuals Model1")
+abline(h=0, col= "red")
+plot(data$Lot.Area,model2$residuals, xlab= "Lot Area", ylab = "residuals, ", main = "Residuals Model 2")
+abline(h=0, col= "red")
+plot(data$Lot.Area,model3$residuals, xlab= "Lot Area", ylab = "residuals, ", main = "Residuals Model 3")
+abline(h=0, col= "red")
+plot(data$Lot.Area,model4$residuals, xlab= "Lot Area", ylab = "residuals, ", main = "Residuals Model 4")
+abline(h=0, col= "red")
+```
+
+
+(b) Calculating Pearson's Sample Correlation Coefficient (r) and Coefficient of Determination (r^2)
+```{r correlation, message=FALSE, warning=FALSE}
+#model 1
+cor(data$Lot.Area,data$SalePrice)^2
+#model 2
+cor(data$Lot.Area,log(data$SalePrice))^2
+#model 3
+cor(log(data$Lot.Area),data$SalePrice)^2
+#model 4
+cor(log(data$Lot.Area),log(data$SalePrice))^2
+```
+
+
+(c) Further we can see how the the fitted line on the scatter plots:
+```{r scatter plots, message=FALSE, warning=FALSE}
+plot(data$Lot.Area, data$SalePrice,xlab = "Lot Area", ylab = "Sales Price", main = "model 1" )
+abline(model1$coefficients, col ="blue")
+
+
+plot(log(data$Lot.Area), data$SalePrice,xlab = "Lot Area", ylab = "log(Sales Price)", main = "model 2" )
+abline(model2$coefficients, col ="blue")
+
+
+plot(data$Lot.Area, log(data$SalePrice),xlab = "log(Lot Area)", ylab = "Sales Price", main = "model 3" )
+abline(model3$coefficients, col ="blue")
+
+
+plot(log(data$Lot.Area),log(data$SalePrice), xlab = "log(Lot Area)", ylab = "log(Sale Price)", main = "model 4")
+abline(model4$coefficients, col ="blue")
+```
+
+Based on the above diagnostics, we concluded model 4 is the best fit for the given data.
+
+######Question 2b
+Given that SalePrice ($Y$) is the independent variable and Lot.Area ($x_1$), Overall.Qual ($x_2$) and MS.SubClass ($x_3$) are the dependent variables, we first try to establish the pairwise correlation between the different variables.
+```{r}
+dat2 = select(AmesHousing_num_csv, SalePrice, Lot.Area, Overall.Qual, MS.SubClass)
+#round(cor(dat2),2)
+#pairs(dat2)
+
+ggpairs(dat2)
+```
+Correlation between x3 and all other variables are negative and very close to 0. This is because MS SubClass identifies the type of dwelling and is a nominal unordered variable. We perform a single parameter t test with null hypothesis of $\beta_3 = 0$. 
+
+######Question2c
+Question 2c (i)
+```{r}
+model=lm(log(data$SalePrice) ~ 1 + data$Lot.Area + AmesHousing_num_csv$Overall.Qual + AmesHousing_num_csv$MS.SubClass)
+summary(model)
+
+```
+Fitted model : Sale Price = `r model$coefficients[1]` + ```r model$coefficients[2]` Lot Area + `r model$coefficients[3]` Overall Qual
+
+
+```{r outliers}
+out=(cooks.distance(model) >= 1)
+#which points
+AmesHousing_num_csv$SalePrice[out=="TRUE"]
+AmesHousing_num_csv$`Lot Area`[out=="TRUE"]
+AmesHousing_num_csv$`Overall Qual`[out=="TRUE"]
+#number of high leverage points
+lev=lm.influence(model)$h>2*3/2930
+length(AmesHousing_num_csv$SalePrice[lev="TRUE"])
+AmesHousing_num_csv$SalePrice[lev="TRUE"]
+
+```
+Q2 (c)(iii)
+```{r prediction}
+lot.area= 10000
+qual=9
+loggedSP=model$coefficients[1] + model$coefficients[2]*lot.area + model$coefficients[3]*qual
+```
+predicted Sale's Price = `r exp(loggedSP)`
