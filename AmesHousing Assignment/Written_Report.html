@@ -124,7 +124,10 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>data_url='/Volumes/harddisk/kiran usb_backup/Statistics 5002/AmesHousing_num.csv'
+<div id="context" class="section level1">
+<h1>Context</h1>
+<p>This report was created as part of an assignment in STAT5002 at University of Sydney. The report provides a linear regression analysis into few of the variables present in the ames housing dataset and finds a best fit for the data. The accompanying assignment questions can be found on my github <span class="citation">@KiranmayiV/data-science-portfolio/AmesHousing</span> Assignment.</p>
+<pre class="r"><code>data_url='/Users/kiran/Documents/mywork/portfolio/datascience/AmesHousing Assignment/AmesHousing_num.csv'
 AmesHousing_num_csv=read.csv(data_url, header=TRUE)
 remove(data_url)
 data &lt;- AmesHousing_num_csv
@@ -384,6 +387,7 @@ AmesHousing_num_csv$SalePrice[lev=&quot;TRUE&quot;]
 qual=9
 loggedSP=model$coefficients[1] + model$coefficients[2]*lot.area + model$coefficients[3]*qual</code></pre>
 <p>predicted Sale’s Price = 3.410949910^{5}</p>
+</div>
 </div>
 
 

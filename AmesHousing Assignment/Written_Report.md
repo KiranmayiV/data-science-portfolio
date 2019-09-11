@@ -3,13 +3,15 @@ output:
   html_document:
     keep_md: true
 ---
+#Context 
 
+This report was created as part of an assignment in STAT5002 at University of Sydney. The report provides a linear regression analysis into few of the variables present in the ames housing dataset and finds a best fit for the data. The accompanying assignment questions can be found on my github @KiranmayiV/data-science-portfolio/AmesHousing Assignment. 
 
 
 
 
 ```r
-data_url='/Volumes/harddisk/kiran usb_backup/Statistics 5002/AmesHousing_num.csv'
+data_url='/Users/kiran/Documents/mywork/portfolio/datascience/AmesHousing Assignment/AmesHousing_num.csv'
 AmesHousing_num_csv=read.csv(data_url, header=TRUE)
 remove(data_url)
 data <- AmesHousing_num_csv
