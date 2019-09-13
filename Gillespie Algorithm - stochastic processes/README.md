@@ -1,6 +1,6 @@
 # Gillespie Algorithm for Reaction Diffusion
 
-This repo contains an assigment done as part of a biophysics course. The [pdf file](/GA-physbio.pdf) reproduces the research paper on [Gillespie Algorithm](/ErbanStochastic.pdf) to a stochastic Reaction-Diffusion processes. The corresponding MATLAB code for the algorithm and the graphs is given [here](/GA_code.m).
+This repo contains an assigment done as part of a biophysics course. The [pdf file](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/GA-physbio.pdf) reproduces the research paper on [Gillespie Algorithm](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/ErbanStochastic.pdf) to a stochastic Reaction-Diffusion processes. The corresponding MATLAB code for the algorithm and the graphs is given [here](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/GA_code.m).
 
 Gillespie Algorithm evolved in order to avoid the solving of Chemical Master Equation which are coupled ordinary differential equations which solve for the evolution of stochastic processes such as biochemical reaction. It was found that this evolution happened in jumps and that the time to these jumps were exponentially distributed and the probability of the next event is propotional to the rate. The downside of Chemical Master Equation is that they are rarely analytically solvable.
 
