@@ -5,10 +5,10 @@ This Repository contains academic research projects and assignment projects purs
 
 ## MATLAB & Computational Biology
 While I was a PhD candidate, I wrote some complex simulation algorithms in MATLAB which mostly fell in the domain of Modelling Biological Systems such as - pattern matching of DNA sequences, stochastic process modelling of reaction-diffusion, DNA alignment etc. I have uploaded some of the algorithms here - 
-1. [Gibbs Sampling and Simulated Annaling](/Gibbs Sampling & SA) 
-2. [Gillespie Algorithm for modelling stochastic processes](/Gillespie Algorithm - stochastic processes)
-3. [Markov Model](data-science-portfolio/Markov Model)
-4. [Hidden Markov Model](data-science-portfolio/Hidden Markov Model - Viterbi)
+1. [Gibbs Sampling and Simulated Annaling] (/Gibbs Sampling & SA) 
+2. [Gillespie Algorithm for modelling stochastic processes](/Gillespie\ Algorithm\ - \stochastic processes)
+3. [Markov Model](/Markov\ Model)
+4. [Hidden Markov Model](/Hidden\ Markov\ Model\ - \Viterbi)
 
 ## Complex Adaptive Systems
 After my decision to discontinue with my PhD I decided I wanted a change in field and to move away from Biological Systems. Instead I came to University of Sydney to purse Masters in Complex Adaptive Systems. 
@@ -24,8 +24,8 @@ Below are some of the projects related to CAS -
 ## Machine Learning/ Data Science
 Lately I have also been trying my hand in a few machine learning projects and data science projects. Herein below are listed some of the projects -
 
-1. [AmesHousing Assignment](/) <em>R</em>
-2. [Simple Linear Regression](/) <em>R</em>
+1. [AmesHousing Assignment](/AmesHousing Assignment) <em>R</em>
+2. [Simple Linear Regression](/Simple Linear Regression) <em>R</em>
 3. [Kaggle](/Kaggle) - I made this folder to document my Kaggle kernels. 
 <em>R</em>
 4. Bike Sharing Demand (coming soon) <em>R</em>
