@@ -1,0 +1,13 @@
+# Gillespie Algorithm for Reaction Diffusion
+
+This repo contains an assigment done as part of a biophysics course. The [pdf file](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/GA-physbio.pdf) reproduces the research paper on [Gillespie Algorithm](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/ErbanStochastic.pdf) to a stochastic Reaction-Diffusion processes. The corresponding MATLAB code for the algorithm and the graphs is given [here](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Gillespie%20Algorithm%20-%20stochastic%20processes/GA_code.m).
+
+Gillespie Algorithm evolved in order to avoid the solving of Chemical Master Equation which are coupled ordinary differential equations which solve for the evolution of stochastic processes such as biochemical reaction. It was found that this evolution happened in jumps and that the time to these jumps were exponentially distributed and the probability of the next event is propotional to the rate. The downside of Chemical Master Equation is that they are rarely analytically solvable.
+
+"In contrast, the Gillespie algorithm allows a discrete and stochastic simulation of a system with few reactants because every reaction is explicitly simulated. A trajectory corresponding to a single Gillespie simulation represents an exact sample from the probability mass function that is the solution of the master equation. The physical basis of the algorithm is the collision of molecules within a reaction vessel. It is assumed that collisions are frequent, but collisions with the proper orientation and energy are infrequent. Therefore, all reactions within the Gillespie framework must involve at most two molecules. Reactions involving three molecules are assumed to be extremely rare and are modeled as a sequence of binary reactions."[1]
+
+While the research paper itself offers comprehensive explaination of the algorithm applied to reaction-difussion molecules and traces the evolution of their trajectory over several realizations/instances, another good reference is give [here](http://people.uleth.ca/~roussel/C4000foundations/slides/25stochsim.pdf).[2]
+
+## References
+1. [Gillespie Algorithm wiki](https://en.wikipedia.org/wiki/Gillespie_algorithm)
+2. http://people.uleth.ca/~roussel/C4000foundations/slides/25stochsim.pdf
