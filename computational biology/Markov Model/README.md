@@ -16,11 +16,11 @@ ie P(X_n+1 = x | X_n = x_n)
 And Second order markov chain is given by present state depending on the conditional probabilities of previous two states.
 P(X_n+1 = x | X_n=x_n, X_n-1 = x_n-1)
 
-This folder contains [matlab code](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Markov%20Model/statistics_1.m) for calculating Zero, First and Second order Markov model. 
+This folder contains [matlab code](./statistics_1.m) for calculating Zero, First and Second order Markov model. 
 * Input file = statistics_markov.txt 
 * Output file = output.txt
 
-Additionally [matlab file](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Markov%20Model/markovtext.m) computes several statistics for [text file](https://raw.githubusercontent.com/KiranmayiV/data-science-portfolio/master/Markov%20Model/text2.txt) Below are the statistics listed - 
+Additionally [matlab file](./markovtext.m) computes several statistics for [text file](./text2.txt) Below are the statistics listed - 
 
 * Average word length in the input text file
 * Frequency of each letter
